@@ -17,21 +17,21 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button exchange_button;
+    Button convertButton;
 
-    EditText ammount_Edittext,first_edit_text,second_edit_text;
+    EditText amount,firstText,secondText;
     Spinner spinner_currency;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    exchange_button=findViewById(R.id.exchangebtn);
+    convertButton=findViewById(R.id.btn);
 
-    ammount_Edittext=findViewById(R.id.ammounttext);
+    amount=findViewById(R.id.text1);
     spinner_currency=findViewById(R.id.spinner);
-    first_edit_text=findViewById(R.id.firstedittext);
-    second_edit_text=findViewById(R.id.secondedittext);
+    firstText=findViewById(R.id.text3);
+    secondText=findViewById(R.id.text4);
 
     String[] from={"USD","EURO","MAD"};
     ArrayAdapter adapter=new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,from);
@@ -39,31 +39,31 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    exchange_button.setOnClickListener(new View.OnClickListener() {
+    convertButton.setOnClickListener(new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
             double total1;
             double total2;
-            double ammount=Double.parseDouble(ammount_Edittext.getText().toString());
+            double ammount=Double.parseDouble(amount.getText().toString());
             if(spinner_currency.getSelectedItem().toString()=="USD"){
                 total1=ammount * 10.34;
                 total2=ammount * 0.94;
 
-                first_edit_text.setText(new DecimalFormat("##.##").format(total1)+" MAD");
-                second_edit_text.setText(new DecimalFormat("##.##").format(total2)+" EURO");
+                firstText.setText(new DecimalFormat("##.##").format(total1)+" MAD");
+                secondText.setText(new DecimalFormat("##.##").format(total2)+" EURO");
             }else if(spinner_currency.getSelectedItem().toString()=="MAD"){
                 total1=ammount * 0.097;
                 total2=ammount * 0.091;
 
-                first_edit_text.setText(new DecimalFormat("##.##").format(total1)+" USD");
-                second_edit_text.setText(new DecimalFormat("##.##").format(total2)+" EURO");
+                firstText.setText(new DecimalFormat("##.##").format(total1)+" USD");
+                secondText.setText(new DecimalFormat("##.##").format(total2)+" EURO");
             }else{
                 total1=ammount * 1.06;
                 total2=ammount * 11.01;
 
-                first_edit_text.setText(new DecimalFormat("##.##").format(total1)+" USD");
-                second_edit_text.setText(new DecimalFormat("##.##").format(total2)+" MAD");
+                firstText.setText(new DecimalFormat("##.##").format(total1)+" USD");
+                secondText.setText(new DecimalFormat("##.##").format(total2)+" MAD");
             }
 
         }
